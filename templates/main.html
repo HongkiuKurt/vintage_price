@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 50%;
+}
+.result {
+    margin: auto;
+    width: 50%;
+    border: 1px solid #ccc;
+}
+body {
+  background-image: url('https://sneakers-magazine.com/wp-content/uploads/2018/07/off-white-x-nike-the-ten-collection-grailed-converse-chuck-taylor-collar.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+<head>
+    <title>Vintage Clothins Pricing Prediction Model</title>
+</head>
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <legend>Input values:</legend>
+        designer:
+        <input name="designer" type="text" required>
+        <br>
+        <br> size:
+        <label for="size">Choose a size:</label>
+        <select name="size" id="size">
+            <option value="xxs">xxs</option>
+          <option value="xs">xs</option>
+          <option value="s">s</option>
+          <option value="m">m</option>
+          <option value="l">l</option>
+          <option value="xl">xl</option>
+          <option value="xxl">xxl</option>
+          <option value="ONE SIZE">ONE SIZE</option>
+          <option value="xs">US 5 / EU 37</option>
+          <option value="xs">US 5.5 / EU 38</option>
+          <option value="xs">US 6 / EU 39</option>
+          <option value="xs">US 6.5 / EU 39-40</option>
+          <option value="s">US 7 / EU 40</option>
+          <option value="s">US 7.5 / EU 40-41</option>
+          <option value="s">US 8 / EU 41</option>
+          <option value="s">US 8.5 / EU 41-42</option>
+          <option value="m">US 9 / EU 42</option>
+          <option value="m">US 9.5 / EU 42-43</option>
+          <option value="m">US 10 / EU 43</option>
+          <option value="m">US 10.5 / EU 43-44</option>
+          <option value="l">US 11 / EU 44</option>
+          <option value="l">US 11.5 / EU 44-45</option>
+          <option value="l">US 12 / EU 45</option>
+          <option value="xl">US 12.5 / EU 45-46</option>
+          <option value="xl">US 13 / EU 46</option>
+          <option value="xxl">US 13.5 / EU 46-47</option>
+          <option value="xxl">US 14 / EU 47</option>
+        </select>
+        <br>
+        <br> category:
+        <label for="category">Choose the category:</label>
+        <select name="category" id="category">
+            <option value="Tank Tops & Sleeveless">Tank Tops & Sleeveless</option>
+          <option value="Polos">Polos</option>
+          <option value="Jerseys">Jerseys</option>
+          <option value="Long Sleeve T-Shirts">Long Sleeve T-Shirts</option>
+          <option value="Sweaters & Knitwear">Sweaters & Knitwear</option>
+          <option value="Shirts (Button Ups)">Shirts (Button Ups)</option>
+          <option value="Sweatshirts & Hoodies">Sweatshirts & Hoodies</option>
+          <option value="Overalls & Jumpsuits">Overalls & Jumpsuits</option>
+          <option value="Swimwear">Swimwear</option>
+          <option value="Cropped Pants">Cropped Pants</option>
+          <option value="Shorts">Shorts</option>
+          <option value="Sweatpants & Joggers">Sweatpants & Joggers</option>
+          <option value="Casual Pants">Casual Pants</option>
+          <option value="Denim">Denim</option>
+          <option value="Raincoats">Raincoats</option>
+          <option value="Vests">Vests</option>
+          <option value="Parkas">Parkas</option>
+          <option value="Denim Jackets">Denim Jackets</option>
+          <option value="Leather Jackets">Leather Jackets</option>
+          <option value="Heavy Coats">Heavy Coats</option>
+          <option value="Bombers">Bombers</option>
+          <option value="Light Jackets">Light Jackets</option>
+          <option value="Sandals">Sandals</option>
+          <option value="Slip Ons">Slip Ons</option>
+          <option value="Formal Shoes">Formal Shoes</option>
+          <option value="Casual Leather Shoes">Casual Leather Shoes</option>
+          <option value="Hi-Top Sneakers">Hi-Top Sneakers</option>
+          <option value="Boots">Boots</option>
+          <option value="Low-Top Sneakers">Low-Top Sneakers</option>
+          <option value="Blazers">Blazers</option>
+          <option value="Ties & Pocketsquares">Ties & Pocketsquares</option>
+          <option value="Periodicals">Periodicals</option>
+          <option value="Glasses">Glasses</option>
+          <option value="Socks & Underwear">Socks & Underwear</option>
+          <option value="Gloves & Scarves">Gloves & Scarves</option>
+          <option value="Wallets">Wallets</option>
+          <option value="Belts">Belts</option>
+          <option value="Sunglasses">Sunglasses</option>
+          <option value="Bags & Luggage">Bags & Luggage</option>
+          <option value="Miscellaneous">Miscellaneous</option>
+          <option value="Jewelry & Watches">Jewelry & Watches</option>
+          <option value="Hats">Hats</option>
+        </select>
+        <br>
+        <br> image_count:
+        <input name="image_count" type="number" required>
+        <br>
+        <br> feedback_count:
+        <input name="feedback_count" type="number" required>
+        <br>
+        <br> condition:
+        <label for="condition">Choose the condition:</label>
+        <select name="condition" id="condition">
+            <option value="New">New</option>
+          <option value="Gently used">Gently used</option>
+          <option value="Used">Used</option>
+          <option value="Worn">Worn</option>
+        </select>
+        <br>
+        <br>
+        <input type="submit">
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+        {% for variable, value in original_input.items() %}
+            <b>{{ variable }}</b> : {{ value }}
+        {% endfor %}
+        <br>
+        <br> Suggested price in USD:
+           <p style="font-size:80px">{{ result }}</p>
+    {% endif %}
+</div>
+</html>
